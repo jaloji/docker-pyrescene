@@ -1,17 +1,14 @@
 FROM alpine:3.14
 
 RUN apk update
-RUN apk add --no-cache python3 unrar unzip wget ca-certificates py3-setuptools chromaprint
-
-# Leech pyrescene
-RUN mkdir /app
+RUN apk add --no-cache python3 unrar unzip wget ca-certificates py3-setuptools chromaprint \
+  && mkdir /app
 WORKDIR /app
-RUN wget https://github.com/srrDB/pyrescene/archive/refs/heads/master.zip
-RUN unzip master.zip
-RUN cd pyrescene-master && python3 setup.py install
-
-# Cleanup
-RUN rm -R master.zip pyrescene-master
+RUN wget https://github.com/srrDB/pyrescene/archive/refs/heads/master.zip \
+  && unzip master.zip \
+  && ( cd pyrescene-master \
+  && python3 setup.py install ) \
+  && rm -R master.zip pyrescene-master
 
 # Create user
 ENV UID=1000
