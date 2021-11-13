@@ -22,4 +22,4 @@ WORKDIR /scan/
 USER app
 
 # Do this
-CMD pyrescene.py -r --best --output=/srr /scan/
+CMD pyrescene.py --best -yro /srr /scan/
