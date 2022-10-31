@@ -14,7 +14,7 @@ RUN wget https://github.com/srrDB/pyrescene/archive/refs/heads/master.zip \
 ENV UID=1000
 ENV GID=1000
 
-RUN addgroup -S appgroup && adduser -S app -G appgroup
+RUN addgroup -S appgroup -g "$GID" && adduser -S app -G appgroup -u "$UID"
 
 RUN mkdir -p /scan /srr
 WORKDIR /scan/
